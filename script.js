@@ -1,28 +1,53 @@
-let mainno=Math.floor(Math.random()*100)+1;
+//after u enter corect number, terminate the game
+// use alert for  aynthing, lim u enter worng no
+//use promtp for asking feedback
+//try keyboard events
+//instrad of refresing page to replay, do it manually
 
-let guessno=document.getElementById("numip");
-let p=document.querySelector("p")
-let form=document.querySelector("form")
+
+//nav bar
+fetch("nav.html")
+    .then(res=>res.text())
+    .then(html=>{
+        document.getElementById("navbar").innerHTML=html;
+    })
+
+/*single player*/
+
+// let mainNo=Math.floor(Math.random()*100)+1;
+let mainNo=10;
+
+let guessNo=document.getElementById("numip");
+let btnguess=document.getElementById("guessedNo")
+let replay=document.getElementById("replay")
+let div1=document.getElementById("div1")
+let form=document.getElementById("singleForm")
+
+
+if(btnguess){
+//let gameover=false;
 
 let clickcount=0
-
-let div=document.querySelector("div")
-
 form.addEventListener("submit",function(e){
     e.preventDefault();
     
     clickcount+=1;
-    let guess=guessno.value;
-    guessno.value="";
-    div.innerHTML="";
+    let guess=guessNo.value;
+    guessNo.value="";
+    div1.innerHTML="";
     let p1=document.createElement("p")
     let p2=document.createElement("p")
     let p3=document.createElement("p")
     let p4=document.createElement("p")
     p1.textContent="Feedback:"
-    if(guess==mainno){
+    if(guess==mainNo){
         p2.textContent="You Win"
-    }else if(guess>mainno){
+        //gameover=true;
+        guessNo.disabled=true;
+        btnguess.disabled=true;
+        replay.style.display="inline-block";
+
+    }else if(guess>mainNo){
         p2.textContent="Your Number is Larger"
     }else{
         p2.textContent="Your Number is Smaller"
@@ -30,5 +55,101 @@ form.addEventListener("submit",function(e){
     p3.textContent="No of attemps:";
     p4.textContent=clickcount;
 
-    div.append(p1,p2,p3,p4);
+    div1.append(p1,p2,p3,p4);
+})
+
+replay.addEventListener("click",()=>{
+    location.reload();
+})
+}
+
+/* Multiple player*/
+
+
+let numip1=document.getElementById("numip1")
+let numip2=document.getElementById("numip2")
+
+let form1=document.getElementById("multiple1")
+let form2=document.getElementById("multiple2")
+let feed1=document.getElementById("feed1")
+let feed2=document.getElementById("feed2")
+let btng1=document.getElementById("btng1")
+let btng2=document.getElementById("btng2")
+
+let clickcount1=0
+let clickcount2=0
+
+let multireplay=document.getElementById("multireplay")
+
+form1.addEventListener("submit",function(e){
+    e.preventDefault();
+    
+    clickcount1+=1;
+
+    multiguessed1=numip1.value;
+    numip1.value="";
+    feed1.innerHTML="";
+    let p1=document.createElement("p")
+    let p2=document.createElement("p")
+    let p3=document.createElement("p")
+    let p4=document.createElement("p")
+    p1.textContent="Feedback:"
+
+    if(mainNo==multiguessed1){
+        p2.textContent="you win"
+
+        numip1.disabled=true;
+        btng1.disabled=true;
+        numip2.disabled=true;
+        btng2.disabled=true;
+        
+        multireplay.style.display="inline-block";
+
+    }else if(multiguessed1>mainNo){
+        p2.textContent="Your Number is Larger"
+    }else{
+        p2.textContent="Your Number is Smaller"
+    }
+    p3.textContent="No of attemps:";
+    p4.textContent=clickcount1;
+
+    feed1.append(p1,p2,p3,p4)
+})
+
+form2.addEventListener("submit",function(e){
+    e.preventDefault();
+    clickcount2+=1;
+
+    multiguessed2=numip2.value;
+    numip2.value="";
+    feed2.innerHTML="";
+    let p1=document.createElement("p")
+    let p2=document.createElement("p")
+    let p3=document.createElement("p")
+    let p4=document.createElement("p")
+    p1.textContent="Feedback:"
+
+    if(mainNo==multiguessed2){
+        p2.textContent="you win"
+
+        numip2.disabled=true;
+        btng2.disabled=true;
+        numip1.disabled=true;
+        btng1.disabled=true;
+
+        multireplay.style.display="inline-block";
+        
+    }else if(multiguessed2>mainNo){
+        p2.textContent="Your Number is Larger"
+    }else{
+        p2.textContent="Your Number is Smaller"
+    }
+    p3.textContent="No of attemps:";
+    p4.textContent=clickcount2;
+
+    feed2.append(p1,p2,p3,p4)
+})
+
+multireplay.addEventListener("click",()=>{
+    location.reload();
 })
