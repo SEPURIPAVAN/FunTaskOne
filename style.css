@@ -7,6 +7,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    background-color: #ffffff;
 }
 a{
     text-decoration: none;
@@ -39,11 +40,18 @@ a{
     text-align: center;
     z-index: 10;
 }
-
+header{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 nav a{
     background-color: #0e4549; 
-    padding:10px 20px ;
+    padding: 10px 20px ;
     color: white;
+
+
+}
+nav a:hover {
+    color: rgb(0, 0, 0);
 }
 nav{
     background-color: #0e4549;
@@ -52,4 +60,14 @@ nav{
     justify-content: center;
     align-items: center;
     
+}
+
+.indexPage{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    margin: 5rem;
 }
