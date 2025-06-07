@@ -12,6 +12,14 @@ fetch("nav.html")
         document.getElementById("navbar").innerHTML=html;
     })
 
+//font
+fetch("head.html")
+    .then(res => res.text())
+    .then(html => {
+        document.head.innerHTML = html;
+    });
+
+    
 /*single player*/
 
 // let mainNo=Math.floor(Math.random()*100)+1;
@@ -25,11 +33,12 @@ let form=document.getElementById("singleForm")
 
 
 if(btnguess){
-//let gameover=false;
 
 let clickcount=0
 form.addEventListener("submit",function(e){
     e.preventDefault();
+
+    
     
     clickcount+=1;
     let guess=guessNo.value;
@@ -42,7 +51,7 @@ form.addEventListener("submit",function(e){
     p1.textContent="Feedback:"
     if(guess==mainNo){
         p2.textContent="You Win"
-        //gameover=true;
+        
         guessNo.disabled=true;
         btnguess.disabled=true;
         replay.style.display="inline-block";
@@ -65,30 +74,81 @@ replay.addEventListener("click",()=>{
 
 /* Multiple player*/
 
-
+let winner=document.getElementById("winner")
 let numip1=document.getElementById("numip1")
 let numip2=document.getElementById("numip2")
 
 let form1=document.getElementById("multiple1")
 let form2=document.getElementById("multiple2")
+
 let feed1=document.getElementById("feed1")
 let feed2=document.getElementById("feed2")
+
 let btng1=document.getElementById("btng1")
 let btng2=document.getElementById("btng2")
+
+let multireplay=document.getElementById("multireplay")
+
+let currentplayer=1;
 
 let clickcount1=0
 let clickcount2=0
 
-let multireplay=document.getElementById("multireplay")
+    numip1.disabled=false;
+    btng1.disabled=false;
+    numip2.disabled=true;
+    btng2.disabled=true;
+
+    numip1.focus();
+
+function switchplayer(){
+    if(currentplayer ==1){
+        currentplayer=2;
+        
+        numip1.disabled=true;
+        btng1.disabled=true;
+        numip2.disabled=false;
+        btng2.disabled=false;
+        numip2.focus();
+    }else{
+        currentplayer=1;
+        
+        numip1.disabled=false;
+        btng1.disabled=false;
+        numip2.disabled=true;
+        btng2.disabled=true;
+        numip1.focus();
+    }
+}
+
+function showWinner(win,attempts){
+    numip1.disabled = true;
+    btng1.disabled = true;
+    numip2.disabled = true;
+    btng2.disabled = true;
+
+
+
+    winner.style.display="block";
+    document.getElementById("winMsg").textContent=`${win} is the winner`
+    document.getElementById("winAttempts").textContent=`${win}: ${attempts} attempts`
+    multireplay.style.display="block";
+    multireplay.focus();
+
+    
+}
 
 form1.addEventListener("submit",function(e){
     e.preventDefault();
-    
+    if(currentplayer !=1) 
+        return;
+
     clickcount1+=1;
 
     multiguessed1=numip1.value;
     numip1.value="";
     feed1.innerHTML="";
+
     let p1=document.createElement("p")
     let p2=document.createElement("p")
     let p3=document.createElement("p")
@@ -96,19 +156,20 @@ form1.addEventListener("submit",function(e){
     p1.textContent="Feedback:"
 
     if(mainNo==multiguessed1){
-        p2.textContent="you win"
 
+        p2.textContent="You Win"
         numip1.disabled=true;
         btng1.disabled=true;
         numip2.disabled=true;
         btng2.disabled=true;
         
-        multireplay.style.display="inline-block";
-
+        showWinner("Player1",clickcount1)
     }else if(multiguessed1>mainNo){
         p2.textContent="Your Number is Larger"
+        switchplayer();
     }else{
         p2.textContent="Your Number is Smaller"
+        switchplayer();
     }
     p3.textContent="No of attemps:";
     p4.textContent=clickcount1;
@@ -118,11 +179,16 @@ form1.addEventListener("submit",function(e){
 
 form2.addEventListener("submit",function(e){
     e.preventDefault();
+
+    if(currentplayer !=2) 
+        return;
+
     clickcount2+=1;
 
     multiguessed2=numip2.value;
     numip2.value="";
     feed2.innerHTML="";
+
     let p1=document.createElement("p")
     let p2=document.createElement("p")
     let p3=document.createElement("p")
@@ -130,19 +196,22 @@ form2.addEventListener("submit",function(e){
     p1.textContent="Feedback:"
 
     if(mainNo==multiguessed2){
-        p2.textContent="you win"
 
+        p2.textContent="You Win"
+        
         numip2.disabled=true;
         btng2.disabled=true;
         numip1.disabled=true;
         btng1.disabled=true;
 
-        multireplay.style.display="inline-block";
+       showWinner("player2",clickcount2)
         
     }else if(multiguessed2>mainNo){
         p2.textContent="Your Number is Larger"
+        switchplayer();
     }else{
         p2.textContent="Your Number is Smaller"
+        switchplayer();
     }
     p3.textContent="No of attemps:";
     p4.textContent=clickcount2;

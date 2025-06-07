@@ -1,5 +1,15 @@
-body{
+*{
     background-color: rgb(255, 255, 255);
+    font-family: "Share Tech", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
 }
 
 #replay{
@@ -15,4 +25,31 @@ body{
 
 #multireplay{
     display: none;
+}
+
+#winner{
+    display: none;
+    position: fixed;
+    background-color: brown;
+    top: 30%;
+    left: 35%;
+    border: 2px solid black;
+    padding: 20px;
+    box-shadow: 0px 0px 10px gray;
+    text-align: center;
+    z-index: 10;
+}
+
+nav a{
+    background-color: #0e4549; 
+    padding:10px 20px ;
+    color: white;
+}
+nav{
+    background-color: #0e4549;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
