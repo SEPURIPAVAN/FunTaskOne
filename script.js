@@ -22,8 +22,8 @@ fetch("head.html")
     
 /*single player*/
 
-let mainNo=Math.floor(Math.random()*100)+1;
-
+// let mainNo=Math.floor(Math.random()*100)+1;
+let mainNo=10;
 
 let guessNo=document.getElementById("numip");
 let btnguess=document.getElementById("guessedNo")

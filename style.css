@@ -1,5 +1,7 @@
+/* make diff cursor */
+/* for winner add those spinklers backside */
 *{
-    background-color: rgb(255, 255, 255);
+    
     font-family: "Share Tech", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -7,7 +9,25 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
+
+
+
+}
+body{
+
+    background: linear-gradient(135deg, #0e4549, #157d85, #1abc9c);
+
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    min-height: 100vh;
+    color: #fff;
+
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 a{
     text-decoration: none;
@@ -20,8 +40,7 @@ a{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    
-    
+    flex-wrap: wrap;
 }
 
 #multireplay{
@@ -33,7 +52,7 @@ a{
     position: fixed;
     background-color: brown;
     top: 30%;
-    left: 35%;
+    left: 50%;
     border: 2px solid black;
     padding: 20px;
     box-shadow: 0px 0px 10px gray;
@@ -41,17 +60,30 @@ a{
     z-index: 10;
 }
 header{
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    background-color: #0e4549;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 nav a{
     background-color: #0e4549; 
     padding: 10px 20px ;
     color: white;
+    font-weight: 500;
 
-
+    color: white;
+    background-color: #157d85;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: background 0.3s, color 0.3s;
 }
 nav a:hover {
-    color: rgb(0, 0, 0);
+    font-weight: 650;
+    background-color: white;
+    color: #0e4549;
 }
 nav{
     background-color: #0e4549;
@@ -59,6 +91,9 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0.7rem;
+    gap: 2rem;
+    
     
 }
 
@@ -69,5 +104,154 @@ nav{
     align-items: center;
     text-align: center;
 
-    margin: 5rem;
+    margin: 15rem 20rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    text-align: center;
 }
+
+.indexPage p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    
+}
+
+.btnmain{
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.btnin{
+    background-color: #0e4549;
+    color: rgb(255, 255, 255);
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+
+}
+
+.btnin:hover {
+    background-color: #157d85;
+    transform: scale(1.05);
+}
+.btnin a:hover {
+    background-color: #157d85;
+    transform: scale(1.05);
+}
+
+/* single */
+#singleForm {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 15rem 20rem 0rem 20rem;
+}
+
+#numip {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+#guessedNo{
+    background-color: #0e4549;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+#guessedNo:hover {
+    background-color: #157d85;
+    transform: scale(1.05);
+}
+ #multireplay {
+    display: none;
+    margin-top: 2rem;
+}
+
+#div1, #feed1, #feed2 {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 1rem 20rem 0rem 20rem;
+    font-size: larger;
+}
+
+.replayclass{
+    display: none;
+    margin-top: 2rem;
+    background-color: #0e4549;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin: 1rem 20rem 0rem 20rem;
+
+}
+.replayclass:hover {
+    background-color: #157d85;
+    transform: scale(1.05);
+}
+
+
+@media (max-width: 1000px) {
+    nav {
+        gap: 0.5rem;
+    }
+
+    .indexPage {
+        margin: 13rem 2rem;
+        padding: 1.5rem;
+    }
+
+    .btnmain {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btnin {
+        width: 100%;
+        text-align: center ;
+    }
+
+    #singleForm{
+        margin: 13rem 2rem 0rem 2rem;
+    }
+    #div1, #feed1, #feed2{
+        margin: 1rem 2rem 1rem 2rem;
+    }
+    /* .replayclass{
+        margin: 0rem 26.5rem;
+    } */
+}
+
