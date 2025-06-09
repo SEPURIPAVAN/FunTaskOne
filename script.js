@@ -1,6 +1,3 @@
-//after u enter corect number, terminate the game
-// use alert for  aynthing, lim u enter worng no
-//use promtp for asking feedback
 //try keyboard events
 //instrad of refresing page to replay, do it manually
 
@@ -22,8 +19,8 @@ fetch("head.html")
     
 /*single player*/
 
-// let mainNo=Math.floor(Math.random()*100)+1;
-let mainNo=10;
+let mainNo=Math.floor(Math.random()*100)+1;
+
 
 let guessNo=document.getElementById("numip");
 let btnguess=document.getElementById("guessedNo")
@@ -55,6 +52,7 @@ form.addEventListener("submit",function(e){
         guessNo.disabled=true;
         btnguess.disabled=true;
         replay.style.display="inline-block";
+        replay.focus();
 
     }else if(guess>mainNo){
         p2.textContent="Your Number is Larger"
@@ -131,7 +129,7 @@ function showWinner(win,attempts){
 
     winner.style.display="block";
     document.getElementById("winMsg").textContent=`${win} is the winner`
-    document.getElementById("winAttempts").textContent=`${win}: ${attempts} attempts`
+    document.getElementById("winAttempts").textContent=`${attempts} attempts`
     multireplay.style.display="block";
     multireplay.focus();
 
@@ -163,7 +161,7 @@ form1.addEventListener("submit",function(e){
         numip2.disabled=true;
         btng2.disabled=true;
         
-        showWinner("Player1",clickcount1)
+        showWinner("Player 1",clickcount1)
     }else if(multiguessed1>mainNo){
         p2.textContent="Your Number is Larger"
         switchplayer();
@@ -204,7 +202,7 @@ form2.addEventListener("submit",function(e){
         numip1.disabled=true;
         btng1.disabled=true;
 
-       showWinner("player2",clickcount2)
+       showWinner("Player 2",clickcount2)
         
     }else if(multiguessed2>mainNo){
         p2.textContent="Your Number is Larger"
